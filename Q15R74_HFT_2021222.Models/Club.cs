@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Q15R74_HFT_2021222.Models
 {
-    class Club
+    public class Club
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,10 +25,14 @@ namespace Q15R74_HFT_2021222.Models
         public string Nation { get; set; }
 
         [Range(0,10000)]
-        public double? Value { get; set; }
+        // in million USD
+        public int? Value { get; set; }
 
         [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
+
+        [NotMapped]
+        public virtual Manager Manager { get; set; }
 
     }
 }

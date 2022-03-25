@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Q15R74_HFT_2021222.Models
 {
-    class Manager
+    public class Manager
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

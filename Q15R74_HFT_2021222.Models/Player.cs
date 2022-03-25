@@ -18,7 +18,8 @@ namespace Q15R74_HFT_2021222.Models
         public int? Age { get; set; }
 
         [Range(0, 10000)]
-        public int? Salary { get; set; }
+        //in million USD
+        public double? Salary { get; set; }
 
         public Position Positon { get; set; }
 
@@ -27,6 +28,9 @@ namespace Q15R74_HFT_2021222.Models
 
         [Range(0, 1000)]
         public int? GoalsInSeason { get; set; }
+        
+        [NotMapped]
+        public virtual Club Club { get; set; }
     }
 
     public enum Position
