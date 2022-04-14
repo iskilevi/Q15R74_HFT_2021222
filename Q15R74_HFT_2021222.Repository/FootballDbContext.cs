@@ -55,9 +55,11 @@ namespace Q15R74_HFT_2021222.Repository
                 new Player(){PlayerId = 2 ,Name = "Georginio Wijnaldum", Age = 31, Salary = 10, Positon = Position.Midfielder, ClubId = 1, GoalsInSeason = 1 },
                 new Player(){PlayerId = 3 ,Name = "Sergio Ramos", Age = 35, Salary = 25, Positon = Position.Defender, ClubId = 1, GoalsInSeason = 1 },
                 new Player(){PlayerId = 4 ,Name = "Memphis Depay", Age = 28, Salary = 5, Positon = Position.Attacker, ClubId = 2, GoalsInSeason = 10 },
-                new Player(){PlayerId = 5 ,Name = "Samuel Umtiti", Age = 28, Salary = 17, Positon = Position.Defender, ClubId = 2, GoalsInSeason = 0 },
-                new Player(){PlayerId = 6 ,Name = "Mohamed Salah", Age = 29, Salary = 20, Positon = Position.Attacker, ClubId = 3, GoalsInSeason = 20 },
-                new Player(){PlayerId = 7 ,Name = "Virgil van Dijk", Age = 30, Salary = 15, Positon = Position.Defender, ClubId = 3, GoalsInSeason = 0 }
+                new Player(){PlayerId = 5 ,Name = "Frenkie de Jong", Age = 24, Salary = 8, Positon = Position.Midfielder, ClubId = 2, GoalsInSeason = 1 },
+                new Player(){PlayerId = 6 ,Name = "Samuel Umtiti", Age = 28, Salary = 17, Positon = Position.Defender, ClubId = 2, GoalsInSeason = 0 },
+                new Player(){PlayerId = 7 ,Name = "Mohamed Salah", Age = 29, Salary = 20, Positon = Position.Attacker, ClubId = 3, GoalsInSeason = 20 },
+                new Player(){PlayerId = 8 ,Name = "Roberto Firmino", Age = 30, Salary = 10, Positon = Position.Midfielder, ClubId = 3, GoalsInSeason = 5 },
+                new Player(){PlayerId = 9 ,Name = "Virgil van Dijk", Age = 30, Salary = 15, Positon = Position.Defender, ClubId = 3, GoalsInSeason = 0 }
 
             });
 

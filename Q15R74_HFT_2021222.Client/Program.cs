@@ -30,6 +30,24 @@ namespace Q15R74_HFT_2021222.Client
                     Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t\t\t\t" + item.Positon + "\t\t" + item.Age);
                 }
             }
+            else if (entity == "Manager")
+            {
+                var items = managerLogic.ReadAll();
+                Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t" + "Club");
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.ManagerId + "\t" + item.Name + "\t\t\t\t" + item.Club.Name);
+                }
+            }
+            else if (entity == "Club")
+            {
+                var items = clubLogic.ReadAll();
+                Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t" + "Nation" + "\t\t" + "Manager" + "\t\t\t\t" + "Number of players");
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + item.Manager.Name + "\t\t\t\t" + item.Players.Count());
+                }
+            }
             Console.ReadLine();
         }
         static void Update(string entity)
