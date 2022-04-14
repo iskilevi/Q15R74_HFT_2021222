@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Q15R74_HFT_2021222.Repository;
+using System;
+using System.Linq;
 
 namespace Q15R74_HFT_2021222.Client
 {
@@ -6,7 +8,14 @@ namespace Q15R74_HFT_2021222.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Football Db:");
+
+            FootballDbContext ctx = new FootballDbContext();
+
+            var items = ctx.Players.ToArray();
+
+            ;
+            Console.ReadKey();
         }
     }
 }
