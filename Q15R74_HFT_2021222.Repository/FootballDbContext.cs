@@ -19,11 +19,9 @@ namespace Q15R74_HFT_2021222.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn =
-                    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\football.mdf;Integrated Security=True;MultipleActiveResultSets=True";
                 builder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(conn);
+                    .UseInMemoryDatabase("football");
             }
         }
 
