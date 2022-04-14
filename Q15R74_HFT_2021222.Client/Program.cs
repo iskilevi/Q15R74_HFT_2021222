@@ -21,13 +21,13 @@ namespace Q15R74_HFT_2021222.Client
         }
         static void List(string entity)
         {
-            if (entity == "Actor")
+            if (entity == "Player")
             {
                 var items = playerLogic.ReadAll();
-                Console.WriteLine("Id" + "\t" + "Name" + "\t" + "Position" + "\t" + "Age");
+                Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t\t" + "Position" + "\t\t" + "Age");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t" + item.Positon + "\t" + item.Age);
+                    Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t\t\t\t" + item.Positon + "\t\t" + item.Age);
                 }
             }
             Console.ReadLine();
@@ -46,17 +46,16 @@ namespace Q15R74_HFT_2021222.Client
 
         static void Main(string[] args)
         {
-
-
+            
             var ctx = new FootballDbContext();
 
             var ClubRepo = new ClubRepository(ctx);
             var ManagerRepo = new ManagerRepository(ctx);
             var PlayerRepo = new PlayerRepository(ctx);
 
-            var ClubLogic = new ClubLogic(ClubRepo);
-            var ManagerLogic = new ManagerLogic(ManagerRepo);
-            var PlayerLogic = new PlayerLogic(PlayerRepo);
+            clubLogic = new ClubLogic(ClubRepo);
+            managerLogic = new ManagerLogic(ManagerRepo);
+            playerLogic = new PlayerLogic(PlayerRepo);
 
             var clubSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Club"))

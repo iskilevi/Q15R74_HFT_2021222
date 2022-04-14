@@ -1,4 +1,5 @@
 ﻿using Q15R74_HFT_2021222.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Q15R74_HFT_2021222.Logic
@@ -10,5 +11,7 @@ namespace Q15R74_HFT_2021222.Logic
         Player Read(int id);
         IQueryable<Player> ReadAll();
         void Update(Player item);
+        IEnumerable<PlayerLogic.ClubAvgAgeInfo> ClubAvgAge();
+
     }
 }

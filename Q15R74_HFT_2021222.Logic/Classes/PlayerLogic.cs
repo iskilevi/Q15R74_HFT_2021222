@@ -51,5 +51,25 @@ namespace Q15R74_HFT_2021222.Logic
         {
             this.repo.Update(item);
         }
+
+        //NON-CRUDs
+
+        public IEnumerable<PlayerLogic.ClubAvgAgeInfo> ClubAvgAge()
+        {
+            return from x in this.repo.ReadAll()
+                   group x by x.Club into g
+                   select new ClubAvgAgeInfo()
+                   {
+                       ClubName = g.Key.Name,
+                       AvgAge = g.Average(t => t.Age)
+                   };
+        }
+
+        public class ClubAvgAgeInfo
+        {
+            public string ClubName { get; set; }
+            public double? AvgAge { get; set; }
+        }
+
     }
 }
