@@ -57,17 +57,17 @@ namespace Q15R74_HFT_2021222.Logic
         public IEnumerable<PlayerLogic.ClubAvgAgeInfo> ClubAvgAge()
         {
             return from x in this.repo.ReadAll()
-                   group x by x.ClubId into g
+                   group x by x.Club.Name into g
                    select new ClubAvgAgeInfo()
                    {
-                       ClubId = g.Key,
+                       ClubName = g.Key,
                        AvgAge = g.Average(t => t.Age)
                    };
         }
 
         public class ClubAvgAgeInfo
         {
-            public int ClubId { get; set; }
+            public string ClubName { get; set; }
             public double? AvgAge { get; set; }
         }
 

@@ -16,18 +16,120 @@ namespace Q15R74_HFT_2021222.Client
 
         static void Create(string entity)
         {
-            Console.WriteLine(entity + " create");
-            Console.ReadLine();
+            if (entity == "Player")
+            {
+                Player p = new Player();
+
+                Console.WriteLine("Type in the player's name: ...");
+                string playerName = Console.ReadLine();
+
+                p.Name = playerName;
+
+                Console.WriteLine("Type in the player's age: ...");
+                int playerAge = int.Parse(Console.ReadLine());
+
+                p.Age = playerAge;
+
+                Console.WriteLine("Choose player's position: ...");
+                Console.WriteLine("-Attacker : a");
+                Console.WriteLine("-Midfielder : m");
+                Console.WriteLine("-Defender : d");
+                string playerPos = Console.ReadLine();
+                if (playerPos == "a")
+                {
+                    p.Positon = Position.Attacker;
+                }
+                else if (playerPos == "m")
+                {
+                    p.Positon = Position.Midfielder;
+
+                }
+                else if (playerPos == "d")
+                {
+                    p.Positon = Position.Defender;
+
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Position!(Position is set to default...)");
+                }
+
+
+                Console.WriteLine("Type in the player's club ID: ...");
+                int playerClubId = int.Parse(Console.ReadLine());
+
+                p.ClubId = playerClubId;
+
+                Console.WriteLine("*Player is created!*");
+                playerLogic.Create(p);
+
+                Console.ReadKey();
+            }
+            else if (entity == "Manager")
+            {
+                Manager m = new Manager();
+
+                Console.WriteLine("Type in the manager's name: ...");
+                string managerName = Console.ReadLine();
+
+                m.Name = managerName;
+
+                Console.WriteLine("Type in the manager's salary: ...");
+                int managerSalary = int.Parse(Console.ReadLine());
+
+                m.Salary = managerSalary;
+
+                Console.WriteLine("*Manager is created!*");
+                managerLogic.Create(m);
+
+                Console.ReadKey();
+            }
+            else if (entity == "Club")
+            {
+                Club c = new Club();
+
+                Console.WriteLine("Type in the club's name: ...");
+                string clubName = Console.ReadLine();
+
+                c.Name = clubName;
+
+                Console.WriteLine("Type in the club's nation: ...");
+                string clubNation = Console.ReadLine();
+                c.Nation = clubNation;
+
+                Console.WriteLine("Type in the club's manager ID (Type 0 if club has no manager yet): ...");
+                int clubManagerId = int.Parse(Console.ReadLine());
+                if (clubManagerId != 0)
+                {
+                    c.ManagerId = clubManagerId;
+                }
+                else
+                {
+                    Console.WriteLine("Club has no manager!");
+                }
+
+                Console.WriteLine("*Club is created!*");
+                clubLogic.Create(c);
+
+                Console.ReadKey();
+            }
         }
         static void List(string entity)
         {
             if (entity == "Player")
             {
                 var items = playerLogic.ReadAll();
-                Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t\t" + "Position" + "\t\t" + "Age");
+                Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t\t" + "Position" + "\t\t" + "Age" + "\t\t" + "Club");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t\t\t\t" + item.Positon + "\t\t" + item.Age);
+                    if (item.Club != null)
+                    {
+                        Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t\t\t\t" + item.Positon + "\t\t" + item.Age + "\t\t" + item.Club.Name);
+                    }
+                    else
+                    {
+                        Console.WriteLine(item.PlayerId + "\t" + item.Name + "\t\t\t\t" + item.Positon + "\t\t" + item.Age + "\t\t" + "Uknown");
+                    }
                 }
             }
             else if (entity == "Manager")
@@ -36,7 +138,14 @@ namespace Q15R74_HFT_2021222.Client
                 Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t" + "Club");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.ManagerId + "\t" + item.Name + "\t\t\t\t" + item.Club.Name);
+                    if (item.Club != null)
+                    {
+                        Console.WriteLine(item.ManagerId + "\t" + item.Name + "\t\t\t\t" + item.Club.Name);
+                    }
+                    else
+                    {
+                        Console.WriteLine(item.ManagerId + "\t" + item.Name + "\t\t\t\t" + "Uknown");
+                    }
                 }
             }
             else if (entity == "Club")
@@ -45,7 +154,25 @@ namespace Q15R74_HFT_2021222.Client
                 Console.WriteLine("Id" + "\t" + "Name" + "\t\t\t\t" + "Nation" + "\t\t" + "Manager" + "\t\t\t\t" + "Number of players");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + item.Manager.Name + "\t\t\t\t" + item.Players.Count());
+                    if (item.Players != null)
+                    {
+                        if (item.Manager != null)
+                        {
+                            Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + item.Manager.Name + "\t\t\t\t" + item.Players.Count());
+                        }
+                        else
+                        {
+                            Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + "Unknown" + "\t\t\t\t" + item.Players.Count());
+                        }
+                    }
+                    else if (item.Manager != null)
+                    {
+                        Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + item.Manager.Name + "\t\t\t\t" + "0");
+                    }
+                    else
+                    {
+                        Console.WriteLine(item.ClubId + "\t" + item.Name + "\t\t\t\t" + item.Nation + "\t\t" + "Unknown" + "\t\t\t\t" + "0");
+                    }
                 }
             }
             Console.ReadLine();
@@ -66,10 +193,10 @@ namespace Q15R74_HFT_2021222.Client
             if (entity == "Club")
             {
                 var items = playerLogic.ClubAvgAge();
-                Console.WriteLine("Id" + "\t" + "Average Age");
+                Console.WriteLine("Name" + "\t\t\t" + "Average Age");
                 foreach (var item in items)
                 {
-                    Console.WriteLine(item.ClubId + "\t" + Math.Round(item.AvgAge.Value, 1));
+                    Console.WriteLine(item.ClubName + "\t\t\t" + Math.Round(item.AvgAge.Value, 1));
                 }
             }
             Console.ReadLine();
