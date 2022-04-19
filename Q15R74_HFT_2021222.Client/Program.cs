@@ -243,11 +243,29 @@ namespace Q15R74_HFT_2021222.Client
 
                 Console.WriteLine("*Player is deleted!*");
                 Console.ReadKey();
+
             }
-            else
+            else if (entity == "Manager")
             {
-                Console.WriteLine(entity + " delete");
-                Console.ReadLine();
+                Console.WriteLine("Type in the manager ID to delete: ...");
+
+                int managerId = int.Parse(Console.ReadLine());
+
+                managerLogic.Delete(managerId);
+
+                Console.WriteLine("*Manager is deleted!*");
+                Console.ReadKey();
+            }
+            else if (entity == "Club")
+            {
+                Console.WriteLine("Type in the club ID to delete: ...");
+
+                int clubId = int.Parse(Console.ReadLine());
+
+                clubLogic.Delete(clubId);
+
+                Console.WriteLine("*Club is deleted!*");
+                Console.ReadKey();
             }
         }
 
