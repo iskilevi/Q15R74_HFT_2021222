@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Q15R74_HFT_2021222.Models
 {
@@ -30,6 +31,7 @@ namespace Q15R74_HFT_2021222.Models
         public int? GoalsInSeason { get; set; }
         
         [NotMapped]
+        [JsonIgnore]
         public virtual Club Club { get; set; }
     }
 

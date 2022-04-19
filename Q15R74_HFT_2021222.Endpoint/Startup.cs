@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Q15R74_HFT_2021222.Logic;
+using Q15R74_HFT_2021222.Models;
+using Q15R74_HFT_2021222.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +18,33 @@ namespace Q15R74_HFT_2021222.Endpoint
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<FootballDbContext>();
+
+            services.AddTransient<IRepository<Player>, PlayerRepository>();
+            services.AddTransient<IRepository<Manager>, ManagerRepository>();
+            services.AddTransient<IRepository<Club>, ClubRepository>();
+            
+            services.AddTransient<IPlayerLogic, PlayerLogic>();
+            services.AddTransient<IManagerLogic, ManagerLogic>();
+            services.AddTransient<IClubLogic, ClubLogic>();
+
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Q15R74_HFT_2021222.Endpoint", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,16 +53,17 @@ namespace Q15R74_HFT_2021222.Endpoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Q15R74_HFT_2021222.Endpoint v1"));
             }
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
