@@ -179,13 +179,76 @@ namespace Q15R74_HFT_2021222.Client
         }
         static void Update(string entity)
         {
-            Console.WriteLine(entity + " update");
-            Console.ReadLine();
+            if (entity == "Player")
+            {
+                Console.WriteLine("Enter player ID to update: ...");
+
+                int playerId = int.Parse(Console.ReadLine());
+
+                var modifiedPlayer = playerLogic.Read(playerId);
+                Console.WriteLine("Current Name: ["+modifiedPlayer.Name+"]");
+
+                Console.WriteLine("Set a new name: ...");
+                modifiedPlayer.Name = Console.ReadLine();
+
+                playerLogic.Update(modifiedPlayer);
+
+                Console.WriteLine("*Player is updated!*");
+                Console.ReadKey();
+            }
+            else if (entity == "Manager")
+            {
+                Console.WriteLine("Enter manager ID to update: ...");
+
+                int managerId = int.Parse(Console.ReadLine());
+
+                var modifiedManager = managerLogic.Read(managerId);
+                Console.WriteLine("Current Name: [" + modifiedManager.Name + "]");
+
+                Console.WriteLine("Set a new name: ...");
+                modifiedManager.Name = Console.ReadLine();
+
+                managerLogic.Update(modifiedManager);
+
+                Console.WriteLine("*Manager is updated!*");
+                Console.ReadKey();
+            }
+            else if (entity == "Club")
+            {
+                Console.WriteLine("Enter club ID to update: ...");
+
+                int clubId = int.Parse(Console.ReadLine());
+
+                var modifiedClub = clubLogic.Read(clubId);
+                Console.WriteLine("Current Name: [" + modifiedClub.Name + "]");
+
+                Console.WriteLine("Set a new name: ...");
+                modifiedClub.Name = Console.ReadLine();
+
+                clubLogic.Update(modifiedClub);
+
+                Console.WriteLine("*Club is updated!*");
+                Console.ReadKey();
+            }
         }
         static void Delete(string entity)
         {
-            Console.WriteLine(entity + " delete");
-            Console.ReadLine();
+            if (entity == "Player")
+            {
+                Console.WriteLine("Type in the player ID to delete: ...");
+
+                int playerId = int.Parse(Console.ReadLine());
+
+                playerLogic.Delete(playerId);
+
+                Console.WriteLine("*Player is deleted!*");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine(entity + " delete");
+                Console.ReadLine();
+            }
         }
 
         static void AvgAge(string entity)
