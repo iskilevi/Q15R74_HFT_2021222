@@ -148,6 +148,12 @@ namespace Q15R74_HFT_2021222.Client
                 string name = Console.ReadLine();
                 modifiedPlayer.Name = name;
 
+
+                Console.WriteLine("Current Salary: [" + modifiedPlayer.Salary + "]");
+                Console.WriteLine("Update Salary: ...");
+                int sal = int.Parse(Console.ReadLine());
+                modifiedPlayer.Salary = sal;
+
                 rest.Put(modifiedPlayer, "player");
 
                 Console.WriteLine("*Player is updated!*");
@@ -239,6 +245,16 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void HighestPaid()
+        {
+            var item = rest.Get<HighestPaidClubInfo>("/Stat/HighestPaidClub");
+            Console.WriteLine("Name" + "\t\t\t" + "Salary SUM(M USD)");
+
+            Console.WriteLine(item.First().ClubName + "\t\t\t" + item.First().SalarySum);
+
+            Console.ReadLine();
+        }
+
 
         static void Main(string[] args)
         {
@@ -252,6 +268,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Delete", () => Delete("Club"))
                 .Add("Update", () => Update("Club"))
                 .Add("Average Age", () => AvgAge())
+                .Add("Highest Paid Club", () => HighestPaid())
                 .Add("Exit", ConsoleMenu.Close);
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)

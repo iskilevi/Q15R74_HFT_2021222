@@ -54,7 +54,9 @@ namespace Q15R74_HFT_2021222.Logic
 
         //NON-CRUDs
 
-        public IEnumerable<PlayerLogic.ClubAvgAgeInfo> ClubAvgAge()
+
+        //How much is the average age in a team??
+        public IEnumerable<ClubAvgAgeInfo> ClubAvgAge()
         {
             return from x in this.repo.ReadAll()
                    group x by x.Club.Name into g
@@ -69,6 +71,24 @@ namespace Q15R74_HFT_2021222.Logic
         {
             public string ClubName { get; set; }
             public double? AvgAge { get; set; }
+        }
+
+        //Which team players got the highest salary summarized ??
+        public IEnumerable<HighestPaidClubInfo> HighestPaidClub()
+        {
+            return (from x in this.repo.ReadAll()
+                   group x by x.Club.Name into g
+                   select new HighestPaidClubInfo()
+                   {
+                       ClubName = g.Key,
+                       SalarySum = g.Sum(t => t.Salary)
+                   }).OrderByDescending(t => t.SalarySum).Take(1);
+        }
+
+        public class HighestPaidClubInfo
+        {
+            public string ClubName { get; set; }
+            public double? SalarySum { get; set; }
         }
 
     }

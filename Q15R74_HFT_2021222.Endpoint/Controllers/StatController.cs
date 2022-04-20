@@ -23,5 +23,11 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         {
             return this.logic.ClubAvgAge();
         }
+
+        [HttpGet]
+        public IEnumerable<PlayerLogic.HighestPaidClubInfo> HighestPaidClub()
+        {
+            return this.logic.HighestPaidClub();
+        }
     }
 }
