@@ -25,9 +25,15 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PlayerLogic.HighestPaidClubInfo> HighestPaidClub()
+        public PlayerLogic.HighestPaidClubInfo HighestPaidClub()
         {
             return this.logic.HighestPaidClub();
+        }
+
+        [HttpGet]
+        public PlayerLogic.BestManagerInfo BestManager()
+        {
+            return this.logic.BestManager();
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Q15R74_HFT_2021222.Logic
         }
 
         //Which team players got the highest salary summarized ??
-        public IEnumerable<HighestPaidClubInfo> HighestPaidClub()
+        public HighestPaidClubInfo HighestPaidClub()
         {
             return (from x in this.repo.ReadAll()
                    group x by x.Club.Name into g
@@ -82,7 +82,7 @@ namespace Q15R74_HFT_2021222.Logic
                    {
                        ClubName = g.Key,
                        SalarySum = g.Sum(t => t.Salary)
-                   }).OrderByDescending(t => t.SalarySum).Take(1);
+                   }).OrderByDescending(t => t.SalarySum).First();
         }
 
         public class HighestPaidClubInfo
@@ -90,6 +90,29 @@ namespace Q15R74_HFT_2021222.Logic
             public string ClubName { get; set; }
             public double? SalarySum { get; set; }
         }
+
+        //Who is the best Manager? (Which managers team scored the most goals?)
+        public BestManagerInfo BestManager()
+        {
+            return (from x in this.repo.ReadAll()
+                    group x by x.Club.Manager.Name into g
+                    select new BestManagerInfo()
+                    {
+                        ManagerName = g.Key,
+                        AllGoal = g.Sum(t => t.GoalsInSeason)
+
+                    }).OrderByDescending(t => t.AllGoal).First();
+        }
+
+        public class BestManagerInfo
+        {
+            public string ManagerName { get; set; }
+            
+            public int? AllGoal { get; set; }
+        }
+
+        //List the players of the given Club (clubID)
+
 
     }
 }

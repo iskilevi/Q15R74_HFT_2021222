@@ -247,10 +247,20 @@ namespace Q15R74_HFT_2021222.Client
 
         static void HighestPaid()
         {
-            var item = rest.Get<HighestPaidClubInfo>("/Stat/HighestPaidClub");
+            var item = rest.GetSingle<HighestPaidClubInfo>("/Stat/HighestPaidClub");
             Console.WriteLine("Name" + "\t\t\t" + "Salary SUM(M USD)");
 
-            Console.WriteLine(item.First().ClubName + "\t\t\t" + item.First().SalarySum);
+            Console.WriteLine(item.ClubName + "\t\t\t" + item.SalarySum);
+
+            Console.ReadLine();
+        }
+
+        static void BestManager()
+        {
+            var item = rest.GetSingle<BestManagerInfo>("/Stat/BestManager");
+            Console.WriteLine("Manager Name" +  "\t\t\t" + "All Goals (Season)");
+
+            Console.WriteLine(item.ManagerName + "\t\t\t" + item.AllGoal);
 
             Console.ReadLine();
         }
@@ -276,6 +286,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Create", () => Create("Manager"))
                 .Add("Delete", () => Delete("Manager"))
                 .Add("Update", () => Update("Manager"))
+                .Add("Best Manager", () => BestManager())
                 .Add("Exit", ConsoleMenu.Close);
 
             var playerSubMenu = new ConsoleMenu(args, level: 1)

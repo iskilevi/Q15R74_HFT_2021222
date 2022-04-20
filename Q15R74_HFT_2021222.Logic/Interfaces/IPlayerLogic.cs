@@ -13,7 +13,9 @@ namespace Q15R74_HFT_2021222.Logic
         void Update(Player item);
         IEnumerable<PlayerLogic.ClubAvgAgeInfo> ClubAvgAge();
 
-        IEnumerable<PlayerLogic.HighestPaidClubInfo> HighestPaidClub();
+        PlayerLogic.HighestPaidClubInfo HighestPaidClub();
+
+        PlayerLogic.BestManagerInfo BestManager();
 
 
     }
