@@ -41,4 +41,10 @@ namespace Q15R74_HFT_2021222.Models
         Midfielder,
         Defender
     }
+
+    public class ClubAvgAgeInfo
+    {
+        public string ClubName { get; set; }
+        public double? AvgAge { get; set; }
+    }
 }

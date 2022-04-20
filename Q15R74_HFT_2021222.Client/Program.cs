@@ -227,17 +227,17 @@ namespace Q15R74_HFT_2021222.Client
             }
         }
 
-        //static void AvgAge(string entity)
-        //{
-        //    var items = playerLogic.ClubAvgAge();
-        //    Console.WriteLine("Name" + "\t\t\t" + "Average Age");
-        //    foreach (var item in items)
-        //    {
-        //        Console.WriteLine(item.ClubName + "\t\t\t" + Math.Round(item.AvgAge.Value, 1));
-        //    }
+        static void AvgAge()
+        {
+            List<ClubAvgAgeInfo> items = rest.Get<ClubAvgAgeInfo>("/Stat/ClubAvgAge");
+            Console.WriteLine("Name" + "\t\t\t" + "Average Age");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.ClubName + "\t\t\t" + Math.Round(item.AvgAge.Value, 1));
+            }
 
-        //    Console.ReadLine();
-        //}
+            Console.ReadLine();
+        }
 
 
         static void Main(string[] args)
@@ -251,7 +251,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Create", () => Create("Club"))
                 .Add("Delete", () => Delete("Club"))
                 .Add("Update", () => Update("Club"))
-                //.Add("Average Age", () => AvgAge("Club"))
+                .Add("Average Age", () => AvgAge())
                 .Add("Exit", ConsoleMenu.Close);
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)
