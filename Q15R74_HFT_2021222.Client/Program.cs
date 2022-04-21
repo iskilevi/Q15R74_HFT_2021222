@@ -265,6 +265,22 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void ClubPlayers()
+        {
+            Console.WriteLine("Enter club ID:...");
+            int clubId = int.Parse(Console.ReadLine());
+
+            var items = rest.Get<List<string>>(clubId, "/Stat/PlayerList");
+
+            Console.WriteLine("Player's name list:");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+
 
         static void Main(string[] args)
         {
@@ -279,6 +295,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Update", () => Update("Club"))
                 .Add("Average Age", () => AvgAge())
                 .Add("Highest Paid Club", () => HighestPaid())
+                .Add("Club Players", () => ClubPlayers())
                 .Add("Exit", ConsoleMenu.Close);
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)

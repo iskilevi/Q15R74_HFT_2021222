@@ -50,5 +50,17 @@ namespace Q15R74_HFT_2021222.Logic
             this.repo.Update(item);
         }
 
+
+
+        //NON CRUD
+
+        public IEnumerable<Player> PlayerList(int clubID)
+        {
+            return this.repo
+               .ReadAll()
+               .Where(t => t.ClubId == clubID)
+               .SelectMany(t => t.Players);
+        }
+
     }
 }

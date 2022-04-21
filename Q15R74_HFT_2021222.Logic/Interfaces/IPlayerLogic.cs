@@ -17,6 +17,7 @@ namespace Q15R74_HFT_2021222.Logic
 
         PlayerLogic.BestManagerInfo BestManager();
 
+        IEnumerable<string> PlayerList(int clubID);
 
     }
 }
