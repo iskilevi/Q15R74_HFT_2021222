@@ -42,5 +42,11 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         {
             return this.pLogic.PlayerList(clubId);
         }
+
+        [HttpGet]
+        public PlayerLogic.BestAttackerInfo BestAttacker()
+        {
+            return this.pLogic.BestAttacker();
+        }
     }
 }

@@ -114,7 +114,7 @@ namespace Q15R74_HFT_2021222.Logic
             public int? ClubId { get; set; }
         }
 
-        //List the player's name of a club
+        //List the player's name in a club
         public IEnumerable<string> PlayerList(int clubID)
         {
             return this.repo
@@ -124,6 +124,29 @@ namespace Q15R74_HFT_2021222.Logic
         }
 
 
+        //Which team's attacker scored the most goals?
+        public BestAttackerInfo BestAttacker()
+        {
+             Player best = this.repo.ReadAll()
+                .OrderByDescending(t => t.GoalsInSeason)
+                .Where(t => t.Positon == Position.Attacker)
+                .First();
 
+            return new BestAttackerInfo()
+            {
+                ClubName = best.Club.Name,
+                PlayerName = best.Name,
+                GoalsInSeason = best.GoalsInSeason
+            };
+        }
+
+        public class BestAttackerInfo
+        {
+            public string ClubName { get; set; }
+
+            public string PlayerName { get; set; }
+
+            public int? GoalsInSeason { get; set; }
+        }
     }
 }

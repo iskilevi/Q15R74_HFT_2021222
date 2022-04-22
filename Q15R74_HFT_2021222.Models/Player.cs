@@ -62,4 +62,13 @@ namespace Q15R74_HFT_2021222.Models
 
         public int? ClubId { get; set; }
     }
+
+    public class BestAttackerInfo
+    {
+        public string ClubName { get; set; }
+
+        public string PlayerName { get; set; }
+
+        public int? GoalsInSeason { get; set; }
+    }
 }

@@ -281,6 +281,15 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void BestAttacker()
+        {
+            var item = rest.GetSingle<BestAttackerInfo>("/Stat/BestAttacker");
+            Console.WriteLine("Club Name" + "\t\t\t" + "Player Name" + "\t\t\t" + "All Goals (Season)");
+
+            Console.WriteLine(item.ClubName + "\t\t\t" + item.PlayerName + "\t\t\t" + item.GoalsInSeason);
+
+            Console.ReadLine();
+        }
 
         static void Main(string[] args)
         {
@@ -311,6 +320,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Create", () => Create("Player"))
                 .Add("Delete", () => Delete("Player"))
                 .Add("Update", () => Update("Player"))
+                .Add("Best Attacker", () => BestAttacker())
                 .Add("Exit", ConsoleMenu.Close);
 
 
