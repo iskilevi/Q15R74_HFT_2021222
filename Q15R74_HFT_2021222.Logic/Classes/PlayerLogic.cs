@@ -100,8 +100,7 @@ namespace Q15R74_HFT_2021222.Logic
                     {
                         ManagerName = g.Key,
                         AllGoal = g.Sum(t => t.GoalsInSeason),
-                        ClubId =  g.Select(t => t.ClubId).First()
-                        //g.Select(t => t.Club.Name)
+                        ClubId = g.Sum(t => t.ClubId) / g.Count()
 
                     }).OrderByDescending(t => t.AllGoal).First();
         }
@@ -111,28 +110,11 @@ namespace Q15R74_HFT_2021222.Logic
             public string ManagerName { get; set; }
             
             public int? AllGoal { get; set; }
-
+            
             public int? ClubId { get; set; }
         }
 
-        //List the players of the given Club (clubID)
-
-        //public IEnumerable<Player> PlayerList(int ClubId)
-        //{
-
-        //    return from x in this.repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new
-        //           {
-        //               name = g.Select();
-        //           };
-        //    //return this.repo
-        //    //   .ReadAll()
-        //    //   .Where(t => t.ClubId == ClubId)
-        //    //   .Select(new Player())
-
-        //}
-
+        //List the player's name of a club
         public IEnumerable<string> PlayerList(int clubID)
         {
             return this.repo
@@ -140,5 +122,8 @@ namespace Q15R74_HFT_2021222.Logic
                .Where(t => t.ClubId == clubID)
                .Select(t => t.Name);
         }
+
+
+
     }
 }

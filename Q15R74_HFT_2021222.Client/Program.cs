@@ -258,9 +258,9 @@ namespace Q15R74_HFT_2021222.Client
         static void BestManager()
         {
             var item = rest.GetSingle<BestManagerInfo>("/Stat/BestManager");
-            Console.WriteLine("Manager Name" +  "\t\t\t" + "All Goals (Season)");
+            Console.WriteLine("Manager Name" + "\t\t\t" + "Club ID"+ "\t\t\t" + "All Goals (Season)");
 
-            Console.WriteLine(item.ManagerName + "\t\t\t" + item.AllGoal);
+            Console.WriteLine(item.ManagerName + "\t\t\t" + item.ClubId + "\t\t\t" + item.AllGoal);
 
             Console.ReadLine();
         }

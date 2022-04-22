@@ -59,5 +59,7 @@ namespace Q15R74_HFT_2021222.Models
         public string ManagerName { get; set; }
 
         public int? AllGoal { get; set; }
+
+        public int? ClubId { get; set; }
     }
 }
