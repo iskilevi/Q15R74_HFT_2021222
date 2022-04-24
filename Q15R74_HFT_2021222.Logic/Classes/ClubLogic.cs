@@ -50,5 +50,17 @@ namespace Q15R74_HFT_2021222.Logic
             this.repo.Update(item);
         }
 
+
+        // Non- CRUDs
+
+
+        public IEnumerable<string> NationList()
+        {
+            return this.repo
+               .ReadAll()
+               .Select(t => t.Nation)
+               .Distinct();
+        }
+
     }
 }

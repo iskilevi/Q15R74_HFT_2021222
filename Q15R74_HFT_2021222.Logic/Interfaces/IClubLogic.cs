@@ -12,5 +12,7 @@ namespace Q15R74_HFT_2021222.Logic
         IQueryable<Club> ReadAll();
         void Update(Club item);
 
+        IEnumerable<string> NationList();
+
     }
 }

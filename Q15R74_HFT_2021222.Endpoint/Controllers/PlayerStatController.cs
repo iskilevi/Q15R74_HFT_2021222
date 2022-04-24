@@ -26,6 +26,12 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         }
 
         [HttpGet]
+        IEnumerable<PlayerLogic.ClubAllGoalsInfo> ClubAllGoals()
+        {
+            return this.pLogic.ClubAllGoals();
+        }
+
+        [HttpGet]
         public PlayerLogic.HighestPaidClubInfo HighestPaidClub()
         {
             return this.pLogic.HighestPaidClub();

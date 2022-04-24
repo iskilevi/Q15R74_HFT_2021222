@@ -245,6 +245,18 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void ClubAllGoals()
+        {
+            List<ClubAllGoalsInfo> items = rest.Get<ClubAllGoalsInfo>("/PlayerStat/ClubAllGoals");
+            Console.WriteLine("Club ID" + "\t\t\t" + "All Goals (Season)");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.ClubId + "\t\t\t" + item.AllGoals);
+            }
+
+            Console.ReadLine();
+        }
+
         static void HighestPaid()
         {
             var item = rest.GetSingle<HighestPaidClubInfo>("/PlayerStat/HighestPaidClub");
@@ -307,6 +319,20 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void NationList()
+        {
+
+            var items = rest.Get<string>("/ClubStat/NationList");
+
+            Console.WriteLine("Nation list:");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:53910/", "player");
@@ -318,8 +344,10 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Delete", () => Delete("Club"))
                 .Add("Update", () => Update("Club"))
                 .Add("Club Average Age", () => ClubAvgAge())
+                .Add("Club All Goals", () => ClubAllGoals())
                 .Add("Highest Paid Club", () => HighestPaid())
                 .Add("Club Players", () => ClubPlayers())
+                .Add("Nations", () => NationList())
                 .Add("Exit", ConsoleMenu.Close);
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)

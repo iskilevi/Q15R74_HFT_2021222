@@ -46,8 +46,9 @@ namespace Q15R74_HFT_2021222.Test
 
             mockClubRepo.Setup(m => m.ReadAll()).Returns(new List<Club>()
             {
-                new Club(){ClubId =1, Name ="Beton FC" },
-                new Club(){ClubId = 2, Name = "Fradi" }
+                new Club(){ClubId =1, Name ="Beton FC", Nation = "Hungary"},
+                new Club(){ClubId = 2, Name = "Fradi", Nation = "Hungary" },
+                new Club(){ClubId = 3, Name = "RB Liepzig", Nation = "Germany" }
 
             }.AsQueryable());
 
@@ -117,9 +118,9 @@ namespace Q15R74_HFT_2021222.Test
         {
             var actual = pLogic.PlayerList(1);
             var expected = new List<string>()
-                {
-                   "Robi", "Gabi"
-                };
+            {
+               "Robi", "Gabi"
+            };
 
             Assert.AreEqual(expected, actual);
         }
@@ -139,6 +140,18 @@ namespace Q15R74_HFT_2021222.Test
         {
             var actual = mLogic.ManagerAvgSal();
             var expected = 7.5;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void NationListTest()
+        {
+            var actual = cLogic.NationList();
+            var expected = new List<string>()
+            {
+                   "Hungary", "Germany"
+            };
 
             Assert.AreEqual(expected, actual);
         }

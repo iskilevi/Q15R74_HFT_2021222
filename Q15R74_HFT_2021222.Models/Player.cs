@@ -72,4 +72,12 @@ namespace Q15R74_HFT_2021222.Models
 
         public int? GoalsInSeason { get; set; }
     }
+
+    public class ClubAllGoalsInfo
+    {
+        public int ClubId { get; set; }
+
+        public int? AllGoals { get; set; }
+
+    }
 }

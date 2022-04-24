@@ -161,13 +161,13 @@ namespace Q15R74_HFT_2021222.Logic
 
         public IEnumerable<ClubAllGoalsInfo> ClubAllGoals()
         {
-            return (from x in this.repo.ReadAll()
-                    group x by x.ClubId into g
-                    select new ClubAllGoalsInfo()
-                    {
-                        ClubId = g.Key,
-                        AllGoals = g.Sum(t => t.GoalsInSeason)
-                    }).OrderByDescending(t => t.AllGoals);
+            return from x in this.repo.ReadAll()
+                   group x by x.Club.Name into g
+                   select new ClubAllGoalsInfo()
+                   {
+                       ClubId = g.Sum(t => t.ClubId) / g.Count(),
+                       AllGoals = g.Sum(t => t.GoalsInSeason)
+                   };
         }
 
         public class ClubAllGoalsInfo

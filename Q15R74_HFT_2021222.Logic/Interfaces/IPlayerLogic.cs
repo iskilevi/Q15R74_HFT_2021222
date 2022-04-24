@@ -23,5 +23,7 @@ namespace Q15R74_HFT_2021222.Logic
 
         double? PlayersAvgAge();
 
+        IEnumerable<PlayerLogic.ClubAllGoalsInfo> ClubAllGoals();
+
     }
 }
