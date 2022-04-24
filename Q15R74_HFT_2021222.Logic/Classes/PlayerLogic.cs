@@ -55,6 +55,15 @@ namespace Q15R74_HFT_2021222.Logic
         //NON-CRUDs
 
 
+        //Average age
+
+        public double? PlayersAvgAge()
+        {
+            return this.repo.ReadAll().Average(t => t.Age);
+        }
+
+
+
         //How much is the average age in a team??
         public IEnumerable<ClubAvgAgeInfo> ClubAvgAge()
         {
@@ -71,6 +80,7 @@ namespace Q15R74_HFT_2021222.Logic
         {
             public string ClubName { get; set; }
             public double? AvgAge { get; set; }
+
         }
 
         //Which team players got the highest salary summarized ??

@@ -291,9 +291,16 @@ namespace Q15R74_HFT_2021222.Client
             Console.ReadLine();
         }
 
+        static void PlayersAvgAge()
+        {
+            var age = rest.GetSingle<double?>("/Stat/PlayersAvgAge");
+            Console.WriteLine("Players Average Age: " + Math.Round(age.Value, 1));
+
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
-
             rest = new RestService("http://localhost:53910/", "player");
 
 
@@ -321,6 +328,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Delete", () => Delete("Player"))
                 .Add("Update", () => Update("Player"))
                 .Add("Best Attacker", () => BestAttacker())
+                .Add("Players Average Age", () => PlayersAvgAge())
                 .Add("Exit", ConsoleMenu.Close);
 
 

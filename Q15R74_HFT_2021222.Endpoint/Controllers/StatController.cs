@@ -48,5 +48,11 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         {
             return this.pLogic.BestAttacker();
         }
+
+        [HttpGet]
+        public double? PlayersAvgAge()
+        {
+            return this.pLogic.PlayersAvgAge();
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace Q15R74_HFT_2021222.Models
     {
         public string ClubName { get; set; }
         public double? AvgAge { get; set; }
+
     }
 
     public class HighestPaidClubInfo
