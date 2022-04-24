@@ -25,5 +25,23 @@ namespace Q15R74_HFT_2021222.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Club Club { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Manager b = obj as Manager;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.ManagerId == b.ManagerId;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Q15R74_HFT_2021222.Logic;
 using Q15R74_HFT_2021222.Models;
 using Q15R74_HFT_2021222.Repository;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 
 namespace Q15R74_HFT_2021222.Test
@@ -111,6 +109,72 @@ namespace Q15R74_HFT_2021222.Test
 
             //ASSERT
             mockClubRepo.Verify(r => r.Create(club), Times.Never);
+        }
+
+        [Test]
+        public void CreateManagerTestWithCorrectName()
+        {
+            var manager = new Manager() { Name = "Xavi", Salary = 10 };
+
+            //ACT
+            mLogic.Create(manager);
+
+            //ASSERT
+            mockManagerRepo.Verify(r => r.Create(manager), Times.Once);
+        }
+
+        [Test]
+        public void CreateManagerTestWithInCorrectName()
+        {
+            var manager = new Manager() { Name = "X" };
+            try
+            {
+                //ACT
+                mLogic.Create(manager);
+            }
+            catch
+            {
+
+            }
+
+            //ASSERT
+            mockManagerRepo.Verify(r => r.Create(manager), Times.Never);
+        }
+
+        [Test]
+        public void ReadClubTestWithInCorrectId()
+        {
+            int id = 5;
+
+            try
+            {
+                //ACT
+                cLogic.Read(id);
+            }
+            catch
+            {
+
+            }
+
+            //ASSERT
+            Assert.That(() => cLogic.Read(id),
+                Throws.TypeOf<ArgumentException>().With.Message
+                      .EqualTo("Club does not exist..."));
+        }
+
+        [Test]
+        public void ReadAllManagerTest()
+        {
+            var actual = mLogic.ReadAll();
+
+            var expected = new List<Manager>()
+            {
+                new Manager() { ManagerId = 1, Name = "Béla", Salary = 5 },
+                new Manager() { ManagerId = 2, Name = "Roberto", Salary = 10 }
+            };
+
+            Assert.AreEqual(expected, actual);
+
         }
 
         [Test]
