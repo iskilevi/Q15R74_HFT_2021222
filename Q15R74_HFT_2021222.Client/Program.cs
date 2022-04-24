@@ -233,9 +233,9 @@ namespace Q15R74_HFT_2021222.Client
             }
         }
 
-        static void AvgAge()
+        static void ClubAvgAge()
         {
-            List<ClubAvgAgeInfo> items = rest.Get<ClubAvgAgeInfo>("/Stat/ClubAvgAge");
+            List<ClubAvgAgeInfo> items = rest.Get<ClubAvgAgeInfo>("/PlayerStat/ClubAvgAge");
             Console.WriteLine("Name" + "\t\t\t" + "Average Age");
             foreach (var item in items)
             {
@@ -247,8 +247,8 @@ namespace Q15R74_HFT_2021222.Client
 
         static void HighestPaid()
         {
-            var item = rest.GetSingle<HighestPaidClubInfo>("/Stat/HighestPaidClub");
-            Console.WriteLine("Name" + "\t\t\t" + "Salary SUM(M USD)");
+            var item = rest.GetSingle<HighestPaidClubInfo>("/PlayerStat/HighestPaidClub");
+            Console.WriteLine("Name" + "\t\t\t" + "Salary SUM(M USD/ Year)");
 
             Console.WriteLine(item.ClubName + "\t\t\t" + item.SalarySum);
 
@@ -257,8 +257,8 @@ namespace Q15R74_HFT_2021222.Client
 
         static void BestManager()
         {
-            var item = rest.GetSingle<BestManagerInfo>("/Stat/BestManager");
-            Console.WriteLine("Manager Name" + "\t\t\t" + "Club ID"+ "\t\t\t" + "All Goals (Season)");
+            var item = rest.GetSingle<BestManagerInfo>("/PlayerStat/BestManager");
+            Console.WriteLine("Manager Name" + "\t\t\t" + "Club ID"+ "\t\t\t" + "All Goals scored by his team");
 
             Console.WriteLine(item.ManagerName + "\t\t\t" + item.ClubId + "\t\t\t" + item.AllGoal);
 
@@ -270,7 +270,7 @@ namespace Q15R74_HFT_2021222.Client
             Console.WriteLine("Enter club ID:...");
             int clubId = int.Parse(Console.ReadLine());
 
-            var items = rest.Get<List<string>>(clubId, "/Stat/PlayerList");
+            var items = rest.Get<List<string>>(clubId, "/PlayerStat/PlayerList");
 
             Console.WriteLine("Player's name list:");
             foreach (var item in items)
@@ -283,7 +283,7 @@ namespace Q15R74_HFT_2021222.Client
 
         static void BestAttacker()
         {
-            var item = rest.GetSingle<BestAttackerInfo>("/Stat/BestAttacker");
+            var item = rest.GetSingle<BestAttackerInfo>("/PlayerStat/BestAttacker");
             Console.WriteLine("Club Name" + "\t\t\t" + "Player Name" + "\t\t\t" + "All Goals (Season)");
 
             Console.WriteLine(item.ClubName + "\t\t\t" + item.PlayerName + "\t\t\t" + item.GoalsInSeason);
@@ -293,8 +293,16 @@ namespace Q15R74_HFT_2021222.Client
 
         static void PlayersAvgAge()
         {
-            var age = rest.GetSingle<double?>("/Stat/PlayersAvgAge");
+            var age = rest.GetSingle<double?>("/PlayerStat/PlayersAvgAge");
             Console.WriteLine("Players Average Age: " + Math.Round(age.Value, 1));
+
+            Console.ReadLine();
+        }
+
+        static void ManagerAvgSal()
+        {
+            var sal = rest.GetSingle<double?>("/ManagerStat/ManagerAvgSal");
+            Console.WriteLine("Manager Average Salary: " + Math.Round(sal.Value, 1) + "M USD/ year");
 
             Console.ReadLine();
         }
@@ -309,7 +317,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Create", () => Create("Club"))
                 .Add("Delete", () => Delete("Club"))
                 .Add("Update", () => Update("Club"))
-                .Add("Average Age", () => AvgAge())
+                .Add("Club Average Age", () => ClubAvgAge())
                 .Add("Highest Paid Club", () => HighestPaid())
                 .Add("Club Players", () => ClubPlayers())
                 .Add("Exit", ConsoleMenu.Close);
@@ -319,6 +327,7 @@ namespace Q15R74_HFT_2021222.Client
                 .Add("Create", () => Create("Manager"))
                 .Add("Delete", () => Delete("Manager"))
                 .Add("Update", () => Update("Manager"))
+                .Add("Managers Average Salary", () => ManagerAvgSal())
                 .Add("Best Manager", () => BestManager())
                 .Add("Exit", ConsoleMenu.Close);
 

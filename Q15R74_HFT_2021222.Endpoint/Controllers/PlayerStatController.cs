@@ -10,11 +10,11 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
-    public class StatController : ControllerBase
+    public class PlayerStatController : ControllerBase
     {
         IPlayerLogic pLogic;
 
-        public StatController(IPlayerLogic logic)
+        public PlayerStatController(IPlayerLogic logic)
         {
             this.pLogic = logic;
         }
@@ -54,5 +54,6 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         {
             return this.pLogic.PlayersAvgAge();
         }
+
     }
 }

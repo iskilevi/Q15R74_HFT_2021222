@@ -53,8 +53,8 @@ namespace Q15R74_HFT_2021222.Test
 
             mockManagerRepo.Setup(m => m.ReadAll()).Returns(new List<Manager>()
             {
-                new Manager(){ManagerId = 1, Name = "Béla" },
-                new Manager(){ManagerId = 2, Name = "Roberto"}
+                new Manager(){ManagerId = 1, Name = "Béla", Salary = 5},
+                new Manager(){ManagerId = 2, Name = "Roberto", Salary = 10}
 
             }.AsQueryable());
 
@@ -133,5 +133,15 @@ namespace Q15R74_HFT_2021222.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void ManagerAvgSalTest()
+        {
+            var actual = mLogic.ManagerAvgSal();
+            var expected = 7.5;
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

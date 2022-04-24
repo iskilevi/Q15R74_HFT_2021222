@@ -10,5 +10,6 @@ namespace Q15R74_HFT_2021222.Logic
         Manager Read(int id);
         IQueryable<Manager> ReadAll();
         void Update(Manager item);
+        double? ManagerAvgSal();
     }
 }

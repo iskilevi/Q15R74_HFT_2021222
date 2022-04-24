@@ -54,6 +54,9 @@ namespace Q15R74_HFT_2021222.Logic
 
         //Non- CRUDs
 
-
+        public double? ManagerAvgSal()
+        {
+            return this.repo.ReadAll().Average(t => t.Salary);
+        }
     }
 }

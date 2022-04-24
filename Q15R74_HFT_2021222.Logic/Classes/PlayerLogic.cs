@@ -158,5 +158,24 @@ namespace Q15R74_HFT_2021222.Logic
 
             public int? GoalsInSeason { get; set; }
         }
+
+        public IEnumerable<ClubAllGoalsInfo> ClubAllGoals()
+        {
+            return (from x in this.repo.ReadAll()
+                    group x by x.ClubId into g
+                    select new ClubAllGoalsInfo()
+                    {
+                        ClubId = g.Key,
+                        AllGoals = g.Sum(t => t.GoalsInSeason)
+                    }).OrderByDescending(t => t.AllGoals);
+        }
+
+        public class ClubAllGoalsInfo
+        {
+            public int ClubId { get; set; }
+
+            public int? AllGoals { get; set; }
+
+        }
     }
 }
