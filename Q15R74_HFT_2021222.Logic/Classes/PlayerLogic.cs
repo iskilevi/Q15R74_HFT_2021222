@@ -162,10 +162,10 @@ namespace Q15R74_HFT_2021222.Logic
         public IEnumerable<ClubAllGoalsInfo> ClubAllGoals()
         {
             return from x in this.repo.ReadAll()
-                   group x by x.Club.Name into g
+                   group x by x.ClubId into g
                    select new ClubAllGoalsInfo()
                    {
-                       ClubId = g.Sum(t => t.ClubId) / g.Count(),
+                       ClubId = g.Key,
                        AllGoals = g.Sum(t => t.GoalsInSeason)
                    };
         }
@@ -176,6 +176,23 @@ namespace Q15R74_HFT_2021222.Logic
 
             public int? AllGoals { get; set; }
 
+            public override bool Equals(object obj)
+            {
+                ClubAllGoalsInfo b = obj as ClubAllGoalsInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ClubId == b.ClubId;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
     }
 }

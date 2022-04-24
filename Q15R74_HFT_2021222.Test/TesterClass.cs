@@ -37,9 +37,9 @@ namespace Q15R74_HFT_2021222.Test
 
             mockPlayerRepo.Setup(m => m.ReadAll()).Returns(new List<Player>()
             {
-                new Player(){PlayerId = 1, Name = "Robi", Age = 20, ClubId = 1, Salary = 100,},
-                new Player(){PlayerId = 2, Name = "Gabi", Age = 25, ClubId = 1, Salary = 25,},
-                new Player(){PlayerId = 3, Name = "Árpád", Age = 30, ClubId = 2}
+                new Player(){PlayerId = 1, Name = "Robi", Age = 20, ClubId = 1, Salary = 100, GoalsInSeason = 1},
+                new Player(){PlayerId = 2, Name = "Gabi", Age = 25, ClubId = 1, Salary = 25, GoalsInSeason = 4},
+                new Player(){PlayerId = 3, Name = "Árpád", Age = 30, ClubId = 2, GoalsInSeason = 1}
 
             }.AsQueryable());
 
@@ -151,6 +151,29 @@ namespace Q15R74_HFT_2021222.Test
             var expected = new List<string>()
             {
                    "Hungary", "Germany"
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ClubAllGoals()
+        {
+            var actual = pLogic.ClubAllGoals();
+            var expected = new List<PlayerLogic.ClubAllGoalsInfo>()
+            {
+               new PlayerLogic.ClubAllGoalsInfo
+               {
+                   ClubId = 1,
+                   AllGoals = 5
+               },
+               
+               new PlayerLogic.ClubAllGoalsInfo
+               {
+                   ClubId = 2,
+                   AllGoals = 1
+               }
+
             };
 
             Assert.AreEqual(expected, actual);

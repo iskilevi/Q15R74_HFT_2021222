@@ -247,11 +247,11 @@ namespace Q15R74_HFT_2021222.Client
 
         static void ClubAllGoals()
         {
-            List<ClubAllGoalsInfo> items = rest.Get<ClubAllGoalsInfo>("/PlayerStat/ClubAllGoals");
+            var items = rest.Get<ClubAllGoalsInfo>("/PlayerStat/ClubAllGoals");
             Console.WriteLine("Club ID" + "\t\t\t" + "All Goals (Season)");
             foreach (var item in items)
             {
-                Console.WriteLine(item.ClubId + "\t\t\t" + item.AllGoals);
+                Console.WriteLine(item.ClubId + "\t" + item.AllGoals);
             }
 
             Console.ReadLine();
