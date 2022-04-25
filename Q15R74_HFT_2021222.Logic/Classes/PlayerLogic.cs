@@ -81,24 +81,61 @@ namespace Q15R74_HFT_2021222.Logic
             public string ClubName { get; set; }
             public double? AvgAge { get; set; }
 
+            public override bool Equals(object obj)
+            {
+                ClubAvgAgeInfo b = obj as ClubAvgAgeInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ClubName == b.ClubName
+                        && this.AvgAge == b.AvgAge;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         //Which team players got the highest salary summarized ??
         public HighestPaidClubInfo HighestPaidClub()
         {
             return (from x in this.repo.ReadAll()
-                   group x by x.Club.Name into g
-                   select new HighestPaidClubInfo()
-                   {
-                       ClubName = g.Key,
-                       SalarySum = g.Sum(t => t.Salary)
-                   }).OrderByDescending(t => t.SalarySum).First();
+                    group x by x.Club.Name into g
+                    select new HighestPaidClubInfo()
+                    {
+                        ClubName = g.Key,
+                        SalarySum = g.Sum(t => t.Salary)
+                    }).OrderByDescending(t => t.SalarySum).First();
         }
 
         public class HighestPaidClubInfo
         {
             public string ClubName { get; set; }
             public double? SalarySum { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                HighestPaidClubInfo b = obj as HighestPaidClubInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ClubName == b.ClubName
+                        && this.SalarySum == b.SalarySum;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         //Who is the best Manager? (Which managers team scored the most goals?)
@@ -118,10 +155,30 @@ namespace Q15R74_HFT_2021222.Logic
         public class BestManagerInfo
         {
             public string ManagerName { get; set; }
-            
+
             public int? AllGoal { get; set; }
-            
+
             public int? ClubId { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                BestManagerInfo b = obj as BestManagerInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ManagerName == b.ManagerName
+                        && this.ClubId == b.ClubId
+                        && this.AllGoal == b.AllGoal;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         //List the player's name in a club
@@ -137,10 +194,10 @@ namespace Q15R74_HFT_2021222.Logic
         //Which team's attacker scored the most goals?
         public BestAttackerInfo BestAttacker()
         {
-             Player best = this.repo.ReadAll()
-                .OrderByDescending(t => t.GoalsInSeason)
-                .Where(t => t.Positon == Position.Attacker)
-                .First();
+            Player best = this.repo.ReadAll()
+               .OrderByDescending(t => t.GoalsInSeason)
+               .Where(t => t.Positon == Position.Attacker)
+               .First();
 
             return new BestAttackerInfo()
             {
@@ -157,6 +214,26 @@ namespace Q15R74_HFT_2021222.Logic
             public string PlayerName { get; set; }
 
             public int? GoalsInSeason { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                BestAttackerInfo b = obj as BestAttackerInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ClubName == b.ClubName
+                        && this.PlayerName == b.PlayerName
+                        && this.GoalsInSeason == b.GoalsInSeason;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         public IEnumerable<ClubAllGoalsInfo> ClubAllGoals()

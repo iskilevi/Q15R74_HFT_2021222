@@ -31,30 +31,150 @@ namespace Q15R74_HFT_2021222.Test
             mockPlayerRepo = new Mock<IRepository<Player>>();
             mockClubRepo = new Mock<IRepository<Club>>();
             mockManagerRepo = new Mock<IRepository<Manager>>();
-            
+
+
+            // Fake Clubs
+            var c1 = new Club()
+            {
+                ClubId = 1,
+                Name = "Beton FC",
+                Nation = "Hungary",
+                ManagerId = 1,
+                Value = 200,
+                Manager = new Manager()
+                {
+                    ManagerId = 1,
+                    Name = "Béla",
+                    Salary = 5,
+                },
+                Players = new List<Player>()
+                {
+                    new Player()
+                    {
+                        PlayerId = 1,
+                        Name = "Robi",
+                        Age = 20,
+                        ClubId = 1,
+                        Salary = 100,
+                        GoalsInSeason = 1,
+                        Positon = Position.Attacker
+                  },
+
+                    new Player()
+                    {
+                        PlayerId = 2,
+                        Name = "Gabi",
+                        Age = 30,
+                        ClubId = 1,
+                        Salary = 25,
+                        GoalsInSeason = 4,
+                        Positon = Position.Midfielder
+
+                    }
+
+
+                }
+            };
+
+            var c2 = new Club()
+            {
+                ClubId = 2,
+                Name = "Fradi",
+                Nation = "Hungary",
+                ManagerId = 2,
+                Manager = new Manager()
+                {
+                    ManagerId = 2,
+                    Name = "Roberto",
+                    Salary = 10,
+                },
+                Players = new List<Player>()
+                {
+                    new Player()
+                    {
+                        PlayerId = 3,
+                        Name = "Árpád",
+                        Age = 30,
+                        ClubId = 2,
+                        GoalsInSeason = 1,
+                    }
+                }
+            };
+
+            var c3 = new Club()
+            {
+                ClubId = 3,
+                Name = "RB Liepzig",
+                Nation = "Germany"
+            };
+
+            //Fake players
+            var p1 = new Player()
+            {
+                PlayerId = 1,
+                Name = "Robi",
+                Age = 20,
+                ClubId = 1,
+                Salary = 100,
+                GoalsInSeason = 1,
+                Positon = Position.Attacker,
+                Club = c1
+            };
+
+            var p2 = new Player()
+            {
+                PlayerId = 2,
+                Name = "Gabi",
+                Age = 30,
+                ClubId = 1,
+                Salary = 25,
+                GoalsInSeason = 4,
+                Positon = Position.Midfielder,
+                Club = c1
+            };
+
+            var p3 = new Player()
+            {
+                PlayerId = 3,
+                Name = "Árpád",
+                Age = 30,
+                ClubId = 2,
+                GoalsInSeason = 1,
+                Club = c2
+            };
+
+            //Fake managers
+
+            var m1 = new Manager()
+            {
+                ManagerId = 1,
+                Name = "Béla",
+                Salary = 5,
+                Club = c1
+            };
+
+            var m2 = new Manager()
+            {
+                ManagerId = 2,
+                Name = "Roberto",
+                Salary = 10,
+                Club = c2
+            };
 
             mockPlayerRepo.Setup(m => m.ReadAll()).Returns(new List<Player>()
             {
-                new Player(){PlayerId = 1, Name = "Robi", Age = 20, ClubId = 1, Salary = 100, GoalsInSeason = 1},
-                new Player(){PlayerId = 2, Name = "Gabi", Age = 25, ClubId = 1, Salary = 25, GoalsInSeason = 4},
-                new Player(){PlayerId = 3, Name = "Árpád", Age = 30, ClubId = 2, GoalsInSeason = 1}
-
+                p1, p2, p3
             }.AsQueryable());
 
 
             mockClubRepo.Setup(m => m.ReadAll()).Returns(new List<Club>()
             {
-                new Club(){ClubId =1, Name ="Beton FC", Nation = "Hungary"},
-                new Club(){ClubId = 2, Name = "Fradi", Nation = "Hungary" },
-                new Club(){ClubId = 3, Name = "RB Liepzig", Nation = "Germany" }
-
+                c1, c2, c3
             }.AsQueryable());
 
             mockManagerRepo.Setup(m => m.ReadAll()).Returns(new List<Manager>()
             {
-                new Manager(){ManagerId = 1, Name = "Béla", Salary = 5},
-                new Manager(){ManagerId = 2, Name = "Roberto", Salary = 10}
-
+                m1, m2
             }.AsQueryable());
 
             pLogic = new PlayerLogic(mockPlayerRepo.Object);
@@ -193,8 +313,8 @@ namespace Q15R74_HFT_2021222.Test
         [Test]
         public void PlayersAvgAgeTest()
         {
-            var actual = pLogic.PlayersAvgAge();
-            var expected = 25;
+            var actual = Math.Round(pLogic.PlayersAvgAge().Value, 1);
+            var expected = 26.7;
 
             Assert.AreEqual(expected, actual);
         }
@@ -231,7 +351,7 @@ namespace Q15R74_HFT_2021222.Test
                    ClubId = 1,
                    AllGoals = 5
                },
-               
+
                new PlayerLogic.ClubAllGoalsInfo
                {
                    ClubId = 2,
@@ -241,6 +361,68 @@ namespace Q15R74_HFT_2021222.Test
             };
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ClubAvgAgeTest()
+        {
+            var actual = pLogic.ClubAvgAge().ToList();
+            var expected = new List<PlayerLogic.ClubAvgAgeInfo>()
+            {
+               new PlayerLogic.ClubAvgAgeInfo
+               {
+                   ClubName = "Beton FC",
+                   AvgAge = 25
+               },
+               new PlayerLogic.ClubAvgAgeInfo
+               {
+                   ClubName = "Fradi",
+                   AvgAge = 30
+               },
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void HighestPaidClubTest()
+        {
+            var actual = pLogic.HighestPaidClub();
+            var expected = new PlayerLogic.HighestPaidClubInfo()
+            {
+                ClubName = "Beton FC",
+                SalarySum = 125
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void BestManagerTest()
+        {
+            var actual = pLogic.BestManager();
+            var expected = new PlayerLogic.BestManagerInfo()
+            {
+                ManagerName = "Béla",
+                ClubId = 1,
+                AllGoal = 5
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void BestAttackerTest()
+        {
+            var actual = pLogic.BestAttacker();
+            var expected = new PlayerLogic.BestAttackerInfo()
+            {
+                ClubName = "Beton FC",
+                PlayerName = "Robi",
+                GoalsInSeason = 1
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
     }
