@@ -15,6 +15,14 @@ namespace FootballDb.WpfClient
     public class MainWindowViewModel : ObservableRecipient
     {
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { SetProperty(ref errorMessage, value); }
+        }
+
         public RestCollection<Player> Players { get; set; }
 
         private Player selectedPlayer;
@@ -55,7 +63,7 @@ namespace FootballDb.WpfClient
         {
             if (!isInDesignMode)
             {
-                Players = new RestCollection<Player>("http://localhost:53910/", "player");
+                Players = new RestCollection<Player>("http://localhost:53910/", "player", "hub");
 
                 CreatePlayerCommand = new RelayCommand(() =>
                 {
@@ -83,7 +91,7 @@ namespace FootballDb.WpfClient
                     }
                     catch (ArgumentException ex)
                     {
-                        //ErrorMessage = ex.Message;
+                        ErrorMessage = ex.Message;
                     }
 
                 });

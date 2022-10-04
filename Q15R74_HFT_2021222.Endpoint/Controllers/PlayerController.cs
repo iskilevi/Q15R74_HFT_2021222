@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Q15R74_HFT_2021222.Endpoint.Services;
 using Q15R74_HFT_2021222.Logic;
 using Q15R74_HFT_2021222.Models;
 using System;
@@ -15,10 +17,12 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
     {
 
         IPlayerLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public PlayerController(IPlayerLogic logic)
+        public PlayerController(IPlayerLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -37,18 +41,22 @@ namespace Q15R74_HFT_2021222.Endpoint.Controllers
         public void Create([FromBody] Player value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("PlayerCreated", value);
         }
 
         [HttpPut]
         public void Put([FromBody] Player value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("PlayerUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var playerToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("PlayerDeleted", playerToDelete);
         }
     }
 }

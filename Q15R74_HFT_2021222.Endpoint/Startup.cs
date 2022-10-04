@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Q15R74_HFT_2021222.Endpoint.Services;
 using Q15R74_HFT_2021222.Logic;
 using Q15R74_HFT_2021222.Models;
 using Q15R74_HFT_2021222.Repository;
@@ -40,6 +41,8 @@ namespace Q15R74_HFT_2021222.Endpoint
             services.AddTransient<IPlayerLogic, PlayerLogic>();
             services.AddTransient<IManagerLogic, ManagerLogic>();
             services.AddTransient<IClubLogic, ClubLogic>();
+
+            services.AddSignalR();
 
 
             services.AddControllers();
@@ -75,6 +78,7 @@ namespace Q15R74_HFT_2021222.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
