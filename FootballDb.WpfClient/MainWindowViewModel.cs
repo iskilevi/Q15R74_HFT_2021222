@@ -61,7 +61,7 @@ namespace FootballDb.WpfClient
                 {
                     Players.Add(new Player()
                     {
-                        Name = "Józsi"
+                        Name = SelectedPlayer.Name
                     });
 
                 });
@@ -87,6 +87,8 @@ namespace FootballDb.WpfClient
                     }
 
                 });
+
+                SelectedPlayer = new Player();
             }
         }
     }
