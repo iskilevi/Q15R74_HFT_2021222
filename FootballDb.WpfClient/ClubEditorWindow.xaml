@@ -28,8 +28,6 @@
             <TextBox Text="{Binding SelectedClub.ManagerId}" Padding="10" Margin="0,0,0,0"/>
             <Label Content="Nation" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedClub.Nation}" Padding="10" Margin="0,0,0,0"/>
-            <Label Content="Manager" Background="LightBlue" Padding="10"/>
-            <Label Content="{Binding SelectedClub.Manager.Name}" Padding="10" Margin="0,0,0,0"/>
             <Label Content="Value (M USD)" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedClub.Value}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Club" Command="{Binding CreateClubCommand}" Margin="10" Padding="10" />
