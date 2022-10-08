@@ -15,95 +15,95 @@ namespace FootballDb.WpfClient
     public class MainWindowViewModel : ObservableRecipient
     {
 
-        private string errorMessage;
+        //    private string errorMessage;
 
-        public string ErrorMessage
-        {
-            get { return errorMessage; }
-            set { SetProperty(ref errorMessage, value); }
-        }
+        //    public string ErrorMessage
+        //    {
+        //        get { return errorMessage; }
+        //        set { SetProperty(ref errorMessage, value); }
+        //    }
 
-        public RestCollection<Player> Players { get; set; }
+        //    public RestCollection<Player> Players { get; set; }
 
-        private Player selectedPlayer;
+        //    private Player selectedPlayer;
 
-        public Player SelectedPlayer
-        {
-            get { return selectedPlayer; }
-            set
-            {
-                if (value != null)
-                {
-                    selectedPlayer = new Player()
-                    {
-                        Name = value.Name,
-                        PlayerId = value.PlayerId,
-                        Age = value.Age,
-                        Salary = value.Salary,
-                        Positon = value.Positon,
-                        ClubId = value.ClubId
-                    };
-                    OnPropertyChanged();
-                    (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
-                }
-            }
-        }
+        //    public Player SelectedPlayer
+        //    {
+        //        get { return selectedPlayer; }
+        //        set
+        //        {
+        //            if (value != null)
+        //            {
+        //                selectedPlayer = new Player()
+        //                {
+        //                    Name = value.Name,
+        //                    PlayerId = value.PlayerId,
+        //                    Age = value.Age,
+        //                    Salary = value.Salary,
+        //                    Positon = value.Positon,
+        //                    ClubId = value.ClubId
+        //                };
+        //                OnPropertyChanged();
+        //                (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
+        //            }
+        //        }
+        //    }
 
 
-        public ICommand CreatePlayerCommand { get; set; }
-        public ICommand DeletePlayerCommand { get; set; }
-        public ICommand UpdatePlayerCommand { get; set; }
+        //    public ICommand CreatePlayerCommand { get; set; }
+        //    public ICommand DeletePlayerCommand { get; set; }
+        //    public ICommand UpdatePlayerCommand { get; set; }
 
-        public static bool isInDesignMode
-        {
-            get
-            {
-                var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue; 
-            }
-        }
+        //    public static bool isInDesignMode
+        //    {
+        //        get
+        //        {
+        //            var prop = DesignerProperties.IsInDesignModeProperty;
+        //            return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue; 
+        //        }
+        //    }
 
-        public MainWindowViewModel()
-        {
-            if (!isInDesignMode)
-            {
-                Players = new RestCollection<Player>("http://localhost:53910/", "player", "hub");
+        //    public MainWindowViewModel()
+        //    {
+        //        if (!isInDesignMode)
+        //        {
+        //            Players = new RestCollection<Player>("http://localhost:53910/", "player", "hub");
 
-                CreatePlayerCommand = new RelayCommand(() =>
-                {
-                    Players.Add(new Player()
-                    {
-                        Name = SelectedPlayer.Name,
-                        Age = SelectedPlayer.Age,
-                        Salary = selectedPlayer.Salary
-                    });
+        //            CreatePlayerCommand = new RelayCommand(() =>
+        //            {
+        //                Players.Add(new Player()
+        //                {
+        //                    Name = SelectedPlayer.Name,
+        //                    Age = SelectedPlayer.Age,
+        //                    Salary = selectedPlayer.Salary
+        //                });
 
-                });
+        //            });
 
-                DeletePlayerCommand = new RelayCommand(() =>
-                {
-                    Players.Delete(SelectedPlayer.PlayerId);
-                },
-                () =>
-                {
-                    return SelectedPlayer != null;
-                });
+        //            DeletePlayerCommand = new RelayCommand(() =>
+        //            {
+        //                Players.Delete(SelectedPlayer.PlayerId);
+        //            },
+        //            () =>
+        //            {
+        //                return SelectedPlayer != null;
+        //            });
 
-                UpdatePlayerCommand = new RelayCommand(() =>
-                {
-                    try
-                    {
-                        Players.Update(SelectedPlayer);
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        ErrorMessage = ex.Message;
-                    }
+        //            UpdatePlayerCommand = new RelayCommand(() =>
+        //            {
+        //                try
+        //                {
+        //                    Players.Update(SelectedPlayer);
+        //                }
+        //                catch (ArgumentException ex)
+        //                {
+        //                    ErrorMessage = ex.Message;
+        //                }
 
-                });
+        //            });
 
-                SelectedPlayer = new Player();
-            }
-        }
+        //            SelectedPlayer = new Player();
+        //        }
+        //    }
     }
 }

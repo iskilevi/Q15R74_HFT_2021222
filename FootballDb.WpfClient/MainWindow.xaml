@@ -5,35 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballDb.WpfClient"
         mc:Ignorable="d"
-        Title="Player Editor" Height="542" Width="800">
+        Title="Editor Selector" Height="542" Width="800">
 
-    <Window.DataContext>
-        <local:MainWindowViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedPlayer.Name}" Padding="10" Margin="0,0,0,0"/>
-            <Label Content="Age" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedPlayer.Age}" Padding="10" Margin="0,0,0,0"/>
-            <Label Content="Club ID" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedPlayer.ClubId}" Padding="10" Margin="0,0,0,0"/>
-            <Label Content="Salary (M USD)" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedPlayer.Salary}" Padding="10" Margin="0,0,0,30"/>
-            <Button Content="Create Player" Command="{Binding CreatePlayerCommand}" Margin="10" Padding="10" />
-            <Button Content="Delete Player" Command="{Binding DeletePlayerCommand}" Margin="10" Padding="10" />
-            <Button Content="Update Player" Command="{Binding UpdatePlayerCommand}" Margin="10" Padding="10" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="1" Content="Club Editor"  Margin="10" Padding="10" />
+        <Button Grid.Column="1" Grid.Row="1" Content="Player Editor" Margin="10" Padding="10" Click="Button_Click" />
+        <Button Grid.Column="2" Grid.Row="1" Content="Manager Editor" Margin="10" Padding="10" Click="Button_Click_1" />
     </Grid>
 </Window>
