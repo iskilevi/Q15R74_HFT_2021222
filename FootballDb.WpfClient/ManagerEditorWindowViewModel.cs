@@ -12,9 +12,8 @@ using System.Windows.Input;
 
 namespace FootballDb.WpfClient
 {
-    public class MainWindowViewModel : ObservableRecipient
+    class ManagerEditorWindowViewModel : ObservableRecipient
     {
-
         private string errorMessage;
 
         public string ErrorMessage
@@ -23,75 +22,74 @@ namespace FootballDb.WpfClient
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Player> Players { get; set; }
+        public RestCollection<Manager> Managers { get; set; }
 
-        private Player selectedPlayer;
+        private Manager selectedManager;
 
-        public Player SelectedPlayer
+        public Manager SelectedManager
         {
-            get { return selectedPlayer; }
+            get { return selectedManager; }
             set
             {
                 if (value != null)
                 {
-                    selectedPlayer = new Player()
+                    selectedManager = new Manager()
                     {
                         Name = value.Name,
-                        PlayerId = value.PlayerId,
-                        Age = value.Age,
+                        ManagerId = value.ManagerId,
                         Salary = value.Salary
                     };
                     OnPropertyChanged();
-                    (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (DeleteManagerCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
 
 
-        public ICommand CreatePlayerCommand { get; set; }
-        public ICommand DeletePlayerCommand { get; set; }
-        public ICommand UpdatePlayerCommand { get; set; }
+        public ICommand CreateManagerCommand { get; set; }
+        public ICommand DeleteManagerCommand { get; set; }
+        public ICommand UpdateManagerCommand { get; set; }
 
         public static bool isInDesignMode
         {
             get
             {
                 var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue; 
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
 
-        public MainWindowViewModel()
+        public ManagerEditorWindowViewModel()
         {
             if (!isInDesignMode)
             {
-                Players = new RestCollection<Player>("http://localhost:53910/", "player", "hub");
+                Managers = new RestCollection<Manager>("http://localhost:53910/", "manager", "hub");
 
-                CreatePlayerCommand = new RelayCommand(() =>
+                CreateManagerCommand = new RelayCommand(() =>
                 {
-                    Players.Add(new Player()
+                    Managers.Add(new Manager()
                     {
-                        Name = SelectedPlayer.Name,
-                        Age = SelectedPlayer.Age,
-                        Salary = selectedPlayer.Salary
+                        Name = SelectedManager.Name,
+                        Club = SelectedManager.Club,
+                        Salary = SelectedManager.Salary
                     });
 
                 });
 
-                DeletePlayerCommand = new RelayCommand(() =>
+                DeleteManagerCommand = new RelayCommand(() =>
                 {
-                    Players.Delete(SelectedPlayer.PlayerId);
+                    Managers.Delete(SelectedManager.ManagerId);
                 },
                 () =>
                 {
-                    return SelectedPlayer != null;
+                    return SelectedManager != null;
                 });
 
-                UpdatePlayerCommand = new RelayCommand(() =>
+                UpdateManagerCommand = new RelayCommand(() =>
                 {
                     try
                     {
-                        Players.Update(SelectedPlayer);
+                        Managers.Update(SelectedManager);
                     }
                     catch (ArgumentException ex)
                     {
@@ -100,7 +98,7 @@ namespace FootballDb.WpfClient
 
                 });
 
-                SelectedPlayer = new Player();
+                SelectedManager = new Manager();
             }
         }
     }
