@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballDb.WpfClient"
         mc:Ignorable="d"
-        Title="Editor Selector" Height="542" Width="800">
+        Title="Editor Selector" Height="511" Width="800">
 
     <Grid Background="LightGreen">
         <Grid.ColumnDefinitions>

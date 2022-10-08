@@ -35,9 +35,10 @@ namespace FootballDb.WpfClient
                 {
                     selectedManager = new Manager()
                     {
-                        Name = value.Name,
                         ManagerId = value.ManagerId,
-                        Salary = value.Salary
+                        Name = value.Name,
+                        Salary = value.Salary,
+                        Club = value.Club
                     };
                     OnPropertyChanged();
                     (DeleteManagerCommand as RelayCommand).NotifyCanExecuteChanged();

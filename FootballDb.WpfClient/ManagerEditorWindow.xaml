@@ -25,11 +25,13 @@
         <StackPanel Grid.Column="1">
             <Label Content="Name" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedManager.Name}" Padding="10" Margin="0,0,0,0"/>
+            <Label Content="Club" Background="LightBlue" Padding="10"/>
+            <Label Content="{Binding SelectedManager.Club.ClubId}" Background="White" Padding="10" Margin="0,0,0,0"/>
             <Label Content="Salary (M USD)" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedManager.Salary}" Padding="10" Margin="0,0,0,30"/>
-            <Button Content="Create Player" Command="{Binding CreateManagerCommand}" Margin="10" Padding="10" />
-            <Button Content="Delete Player" Command="{Binding DeleteManagerCommand}" Margin="10" Padding="10" />
-            <Button Content="Update Player" Command="{Binding UpdateManagerCommand}" Margin="10" Padding="10" />
+            <Button Content="Create Manager" Command="{Binding CreateManagerCommand}" Margin="10" Padding="10" />
+            <Button Content="Delete Manager" Command="{Binding DeleteManagerCommand}" Margin="10" Padding="10" />
+            <Button Content="Update Manager" Command="{Binding UpdateManagerCommand}" Margin="10" Padding="10" />
         </StackPanel>
     </Grid>
 </Window>

@@ -35,8 +35,13 @@ namespace FootballDb.WpfClient
                 {
                     selectedClub = new Club()
                     {
+                        ClubId = value.ClubId,
                         Name = value.Name,
-                        ManagerId = value.ManagerId
+                        ManagerId = value.ManagerId,
+                        Nation = value.Nation,
+                        Value = value.Value,
+                        Players = value.Players,
+                        Manager = value.Manager
                     };
                     OnPropertyChanged();
                     (DeleteClubCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -69,6 +74,11 @@ namespace FootballDb.WpfClient
                     Clubs.Add(new Club()
                     {
                         Name = SelectedClub.Name,
+                        ManagerId = SelectedClub.ManagerId,
+                        Nation = SelectedClub.Nation,
+                        Value = SelectedClub.Value,
+                        Players = SelectedClub.Players,
+                        Manager = SelectedClub.Manager
                     });
 
                 });

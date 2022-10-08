@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballDb.WpfClient"
         mc:Ignorable="d"
-        Title="Player Editor" Height="568" Width="800">
+        Title="Player Editor" Height="680" Width="800">
     <Window.DataContext>
         <local:PlayerEditorWindowViewModel/>
     </Window.DataContext>
@@ -28,6 +28,10 @@
             <TextBox Text="{Binding SelectedPlayer.Age}" Padding="10" Margin="0,0,0,0"/>
             <Label Content="Salary (M USD)" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedPlayer.Salary}" Padding="10" Margin="0,0,0,0"/>
+            <Label Content="Position" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.Positon}" Padding="10" Margin="0,0,0,0"/>
+            <Label Content="Goals in this season" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.GoalsInSeason}" Padding="10" Margin="0,0,0,0"/>
             <Label Content="Club ID" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedPlayer.ClubId}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Player" Command="{Binding CreatePlayerCommand}" Margin="10" Padding="10" />

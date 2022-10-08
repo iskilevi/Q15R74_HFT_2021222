@@ -36,11 +36,14 @@ namespace FootballDb.WpfClient
                 {
                     selectedPlayer = new Player()
                     {
-                        Name = value.Name,
                         PlayerId = value.PlayerId,
+                        Name = value.Name,
                         Age = value.Age,
                         Salary = value.Salary,
-                        ClubId = value.ClubId
+                        Positon = value.Positon,
+                        ClubId = value.ClubId,
+                        GoalsInSeason = value.GoalsInSeason,
+                        Club = value.Club
                     };
                     OnPropertyChanged();
                     (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -74,7 +77,11 @@ namespace FootballDb.WpfClient
                     {
                         Name = SelectedPlayer.Name,
                         Age = SelectedPlayer.Age,
-                        Salary = selectedPlayer.Salary
+                        Salary = SelectedPlayer.Salary,
+                        Positon = SelectedPlayer.Positon,
+                        ClubId = SelectedPlayer.ClubId,
+                        GoalsInSeason = SelectedPlayer.GoalsInSeason,
+                        Club = SelectedPlayer.Club
                     });
 
                 });
