@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace FootballDb.WpfClient
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class PlayerEditorWindowViewModel : ObservableRecipient
     {
 
         private string errorMessage;
@@ -40,7 +40,6 @@ namespace FootballDb.WpfClient
                         PlayerId = value.PlayerId,
                         Age = value.Age,
                         Salary = value.Salary,
-                        Positon = value.Positon,
                         ClubId = value.ClubId
                     };
                     OnPropertyChanged();
@@ -59,11 +58,11 @@ namespace FootballDb.WpfClient
             get
             {
                 var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue; 
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
 
-        public MainWindowViewModel()
+        public PlayerEditorWindowViewModel()
         {
             if (!isInDesignMode)
             {
