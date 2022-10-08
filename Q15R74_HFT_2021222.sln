@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{929B6D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Q15R74_HFT_2021222.Endpoint", "Q15R74_HFT_2021222.Endpoint\Q15R74_HFT_2021222.Endpoint.csproj", "{E5D2CDFF-00F5-48AF-9E9E-D3E8996AA959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballDb.WpfClient", "FootballDb.WpfClient\FootballDb.WpfClient.csproj", "{147AEDF9-665D-4678-AE8E-61A6702E539E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballDb.WpfClient", "FootballDb.WpfClient\FootballDb.WpfClient.csproj", "{147AEDF9-665D-4678-AE8E-61A6702E539E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

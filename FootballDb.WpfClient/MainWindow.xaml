@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Editor Selector" Height="542" Width="800">
 
-    <Grid>
+    <Grid Background="LightGreen">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -18,7 +18,10 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="1" Content="Club Editor"  Margin="10" Padding="10" />
+        <!--<Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>-->
+        <Button Grid.Column="0" Grid.Row="1" Content="Club Editor"  Margin="10" Padding="10" Click="Button_Click_2" />
         <Button Grid.Column="1" Grid.Row="1" Content="Player Editor" Margin="10" Padding="10" Click="Button_Click" />
         <Button Grid.Column="2" Grid.Row="1" Content="Manager Editor" Margin="10" Padding="10" Click="Button_Click_1" />
     </Grid>
