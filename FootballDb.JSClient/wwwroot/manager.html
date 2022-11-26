@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Manager UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Manager Catalog</h1>
+    <a href=index.html>Players</a>
+    <a href=club.html>Clubs</a>
+
+    <div id="formdiv">
+        <label>Manager Name</label>
+        <input type="text" id="managername" />
+        <label>Manager Salary</label>
+        <input type="number" id="managersalary" />
+        <button type="button" onclick="create()">Add Manager</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Manager Name</label>
+        <input type="text" id="managernameupdate" />
+        <label>Manager Salary</label>
+        <input type="number" id="managersalaryupdate" />
+        <button type="button" onclick="update()">Update Manager</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="scriptManager.js"></script>
+
+</body>
+</html>
