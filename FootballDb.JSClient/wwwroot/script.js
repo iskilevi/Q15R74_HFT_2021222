@@ -58,7 +58,7 @@ function display() {
     players.forEach(p => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + p.playerId + "</td><td>"
-            + p.name + "</td><td>" +
+            + p.name + "</td><td>" 
             + p.positon + "</td><td>" +
             + p.salary + "</td><td>" +
             + p.age + "</td><td>" +
@@ -142,4 +142,16 @@ function remove(id) {
         .catch((error) => { console.error('Error:', error); });
 
 }
+
+//function convertEnumNumberToString(number) {
+//    if (number == 0) {
+//        return "Attacker";
+//    }
+//    else if (number == 1) {
+//        return "Midfielder";
+//    }
+//    else if (number == 2) {
+//        return "Defender";
+//    }
+//}
 

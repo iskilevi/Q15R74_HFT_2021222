@@ -2,12 +2,14 @@
     width: 100%;
 }
 
-table, th, td {
-    border: 1px solid black;
+th, td {
+    border: 0.01px solid;
 }
 
 table {
     border-collapse: collapse;
+    text-align: center;
+    align-content: center;
 }
 
 th, td {
@@ -21,7 +23,6 @@ th {
 #formdiv {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
 }
 
     #formdiv label, button, input {
@@ -53,4 +54,17 @@ th {
 table button {
     padding: 2px;
     align-content: center;
+}
+
+a:link, a:visited {
+    background-color: lightgreen;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: forestgreen;
 }

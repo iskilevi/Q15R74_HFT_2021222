@@ -66,8 +66,8 @@ function display() {
 }
 
 function showupdate(id) {
-    document.getElementById('managernameupdate').value = clubs.find(p => p['managerId'] == id)['name'];
-    document.getElementById('managersalaryupdate').value = clubs.find(p => p['managerId'] == id)['salary'];
+    document.getElementById('managernameupdate').value = managers.find(m => m['managerId'] == id)['name'];
+    document.getElementById('managersalaryupdate').value = managers.find(m => m['managerId'] == id)['salary'];
 
     document.getElementById('updateformdiv').style.display = 'flex';
     managerIdToUpdate = id;
