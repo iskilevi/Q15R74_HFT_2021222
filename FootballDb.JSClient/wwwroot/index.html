@@ -24,6 +24,22 @@
         <button type="button" onclick="create()">Add Player</button>
     </div>
 
+    <div id="updateformdiv">
+        <label>Player Name</label>
+        <input type="text" id="playernameupdate" />
+        <label>Position</label>
+        <input type="number" id="playerpositionupdate" />
+        <label>Salary</label>
+        <input type="number" id="playersalaryupdate" />
+        <label>Age</label>
+        <input type="number" id="playerageupdate" />
+        <label>Goals</label>
+        <input type="number" id="goalsinseasonupdate" />
+        <label>Club ID</label>
+        <input type="number" id="playerclubidupdate" />
+        <button type="button" onclick="update()">Update Player</button>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -40,7 +56,7 @@
         <tbody id="resultarea">
         </tbody>
     </table>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="script.js"></script>
 </body> 
 </html>

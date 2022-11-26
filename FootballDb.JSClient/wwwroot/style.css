@@ -21,15 +21,31 @@ th {
 #formdiv {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
     #formdiv label, button, input {
-        margin: 10px;
-        padding: 7px;
+        margin: 5px;
+        padding: 3px;
     }
 
     #formdiv label {
+        font-weight: bolder;
+        align-content: center;
+    }
+
+#updateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+    #updateformdiv label, button, input {
+    margin: 5px;
+    padding: 3px;
+}
+
+    #updateformdiv label {
         font-weight: bolder;
         align-content: center;
     }
