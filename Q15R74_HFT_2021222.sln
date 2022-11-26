@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Q15R74_HFT_2021222.Endpoint
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballDb.WpfClient", "FootballDb.WpfClient\FootballDb.WpfClient.csproj", "{147AEDF9-665D-4678-AE8E-61A6702E539E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballDb.JSClient", "FootballDb.JSClient\FootballDb.JSClient.csproj", "{51E04861-8CC9-42AB-8120-6A3ED6063056}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{147AEDF9-665D-4678-AE8E-61A6702E539E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147AEDF9-665D-4678-AE8E-61A6702E539E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147AEDF9-665D-4678-AE8E-61A6702E539E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E04861-8CC9-42AB-8120-6A3ED6063056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E04861-8CC9-42AB-8120-6A3ED6063056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E04861-8CC9-42AB-8120-6A3ED6063056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E04861-8CC9-42AB-8120-6A3ED6063056}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
